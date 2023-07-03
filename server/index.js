@@ -1,0 +1,44 @@
+var fastify = require('fastify')();
+fastify.decorate('provider', require('./mongo.js'))
+
+
+fastify.get('/', (req, res) => {
+    res.send('works')
+    return res
+})
+
+fastify.get('/clocks', async (req, res) => {
+    var clocks = await fastify.provider.getClocks()
+    res.send(clocks)
+    return res
+})
+
+fastify.get('/clocks/ids', async (req, res) => {
+    var clocks = await fastify.provider.getAllClockIds()
+    res.send(clocks)
+    return res
+})
+
+fastify.get('/clocks/:uuid', async (req, res) => {
+    let id = req.params.uuid
+    console.log(id)
+    var clock = await fastify.provider.getClockByUuid(id)
+    console.log(clock)
+    res.send(clock)
+    return res
+})
+
+
+async function run() {
+    try {
+        let port = process.env.PORT
+        await fastify.listen({ port, host: '0.0.0.0' }, () => {
+            console.log(fastify.printRoutes())
+        })
+        console.log(`Server running on port ${port}`)
+    } catch (error) {
+        console.log('error', error)
+    }
+}
+
+run()
