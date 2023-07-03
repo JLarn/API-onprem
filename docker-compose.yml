@@ -10,7 +10,7 @@ services:
     volumes:
       - ./db:/data/db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: cper2g3-onprem
+      MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password123
 
   api:
@@ -20,4 +20,4 @@ services:
       - 3000:80
     environment:
       PORT: 80
-      MONGO: 'mongodb://cper2g3-onprem:password123@mongo:27017'
+      MONGO: 'mongodb://root:password123@mongo:27017'
