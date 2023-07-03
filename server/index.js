@@ -10,13 +10,13 @@ fastify.get('/', (req, res) => {
 fastify.get('/clocks', async (req, res) => {
     var clocks = await fastify.provider.getClocks()
     res.send(clocks)
-    return res
+    return
 })
 
 fastify.get('/clocks/ids', async (req, res) => {
     var clocks = await fastify.provider.getAllClockIds()
     res.send(clocks)
-    return res
+    return
 })
 
 fastify.get('/clocks/:uuid', async (req, res) => {
@@ -25,7 +25,7 @@ fastify.get('/clocks/:uuid', async (req, res) => {
     var clock = await fastify.provider.getClockByUuid(id)
     console.log(clock)
     res.send(clock)
-    return res
+    return
 })
 
 
