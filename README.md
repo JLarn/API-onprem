@@ -5,4 +5,4 @@ Per poter eseguire `./script.sh` è prima necessario lanciare il comando:
 
 In caso di errore `/bin/bash^M: bad interpreter: No such file or directory` lanciare il comando:
 
-> sed -i -e 's/\r$//' 
+> sed -i -e 's/\r$//' script.sh
