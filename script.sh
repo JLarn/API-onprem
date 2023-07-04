@@ -1,10 +1,8 @@
 #! /usr/bin/bash
 
-rm -rf db
+docker compose down
 
 cd server/
-
-docker compose down
 
 docker rmi api:1
 
@@ -17,3 +15,9 @@ docker compose up --detach
 docker cp devices.json mongo-onprem:/home/devices.json
 
 docker exec mongo-onprem mongoimport -d provisioning -c devices --jsonArray --file /home/devices.json
+
+sudo apt install nginx -y
+
+sudo cp default /etc/nginx/sites-enabled/default
+
+sudo service nginx restart

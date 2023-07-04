@@ -15,6 +15,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password123
 
   api:
+    container_name: api-onprem
     image: api:1
     restart: always
     ports:
