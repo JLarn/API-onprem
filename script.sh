@@ -16,6 +16,8 @@ docker cp devices.json mongo-onprem:/home/devices.json
 
 docker exec mongo-onprem mongoimport -d provisioning -c devices --jsonArray --file /home/devices.json
 
+docker exec mongo-onprem rm /home/devices.json
+
 sudo apt install nginx -y
 
 sudo cp default /etc/nginx/sites-enabled/default
