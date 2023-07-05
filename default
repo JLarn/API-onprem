@@ -8,8 +8,8 @@ server {
 
         server_name _;
 
-        location / {
-        proxy_pass http://127.0.0.1:3000/; # 3000 è la porta di default
+        location /clocks/ {
+                proxy_pass http://127.0.0.1:3000/clocks/; # 3000 è la porta di default
         }
 
 }
