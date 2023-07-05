@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import { baseURL } from '../utils/urls';
+import ClockSummary from './clockSummary';
 
 const url = baseURL + 'ids'
 
 export default function Clocks() {
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  // const [selectedSession, setSelectedSession] = useState(null);
+  const [selectedClock, setSelectedClock] = useState(null);
 
-  // const ViewSessionDetails = (sessionId) => {
-  //   setSelectedSession(sessionId)
-  // }
+  const ViewSessionDetails = (sessionId) => {
+    setSelectedClock(sessionId)
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -18,7 +19,6 @@ export default function Clocks() {
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        console.log('hihihi',data)
         setLoading(false);
       });
   }, []);
@@ -26,7 +26,11 @@ export default function Clocks() {
   if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>No data</p>;
 
-  let clocks = data
+  let clocks = <>
+    {
+      data.map((el, key) => <ClockSummary props={el._id} />)
+    }
+  </>
 
   return clocks
 }
