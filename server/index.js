@@ -2,7 +2,7 @@ const fastify = require('fastify')();
 
 fastify.decorate('provider', require('./mongo.js'))
 fastify.register(require('@fastify/cors'), {
-    origin: "*"
+    origin: "http://192.168.101.0/24"
 })
 
 fastify.get('/', (req, res) => {
