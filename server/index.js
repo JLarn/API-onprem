@@ -1,6 +1,9 @@
-var fastify = require('fastify')();
-fastify.decorate('provider', require('./mongo.js'))
+const fastify = require('fastify')();
 
+fastify.decorate('provider', require('./mongo.js'))
+fastify.register(require('@fastify/cors'), {
+    origin: "*"
+})
 
 fastify.get('/', (req, res) => {
     res.send('works')
@@ -8,13 +11,13 @@ fastify.get('/', (req, res) => {
 })
 
 fastify.get('/clocks', async (req, res) => {
-    var clocks = await fastify.provider.getClocks()
+    let clocks = await fastify.provider.getClocks()
     res.send(clocks)
     return
 })
 
 fastify.get('/clocks/ids', async (req, res) => {
-    var clocks = await fastify.provider.getAllClockIds()
+    let clocks = await fastify.provider.getAllClockIds()
     res.send(clocks)
     return
 })
@@ -22,7 +25,7 @@ fastify.get('/clocks/ids', async (req, res) => {
 fastify.get('/clocks/:uuid', async (req, res) => {
     let id = req.params.uuid
     console.log(id)
-    var clock = await fastify.provider.getClockByUuid(id)
+    let clock = await fastify.provider.getClockByUuid(id)
     console.log(clock)
     res.send(clock)
     return
