@@ -1,0 +1,1 @@
+export const baseURL = 'http://192.168.103.21/clocks/'
