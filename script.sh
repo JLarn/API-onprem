@@ -25,7 +25,7 @@ cd client/
 npm i
 
 # npm run build
-npm run dev
+npm run --silent dev
 
 cd ..
 
