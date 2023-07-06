@@ -31,6 +31,20 @@ fastify.get('/clocks/:uuid', async (req, res) => {
     return
 })
 
+fastify.get('/batches/all', async (req, res) => {
+    let batches = await fastify.provider.getAllBatches()
+    console.log(batches)
+    res.send(batches)
+    return
+})
+
+fastify.get('/batches/:n_batch', async (req, res) => {
+    let n_batch = req.params.n_batch
+    let clocks = await fastify.provider.getClocksByBatch(n_batch)
+    res.send(clocks)
+    return
+})
+
 
 async function run() {
     try {
