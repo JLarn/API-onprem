@@ -15,7 +15,7 @@ server {
                 proxy_pass http://127.0.0.1:3010/batches/; # 3000 è la porta di default
         }
 
-        location /dash/ {
+        location / {
                 proxy_pass http://127.0.0.1:3000/; # 3000 è la porta di default
         }
 }
