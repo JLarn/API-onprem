@@ -18,17 +18,7 @@ docker exec mongo-onprem mongoimport -d provisioning -c devices --jsonArray --fi
 
 docker exec mongo-onprem rm /home/devices.json
 
-sudo apt install nginx npm -y
-
-cd client/
-
-npm i
-
-npm i -g pm2
-
-pm2 start "npm run dev"
-
-cd ..
+sudo apt install nginx -y
 
 sudo cp default /etc/nginx/sites-enabled/default
 

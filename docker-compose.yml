@@ -19,7 +19,7 @@ services:
     image: api:1
     restart: always
     ports:
-      - 3010:80
+      - 3000:80
     environment:
       PORT: 80
       MONGO: 'mongodb://root:password123@mongo:27017'
