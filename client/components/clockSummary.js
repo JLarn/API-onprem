@@ -8,7 +8,7 @@ export default function ClockSummary({props}) {
 
   return (
       <div className="flex flex-col">
-        <tr onClick={() => setDetailsAreShown(!detailsAreShown)} className='bg-slate-400 flex flex-col'>
+        <tr onClick={() => setDetailsAreShown(!detailsAreShown)} className='bg-slate-200 flex flex-col'>
           <td key="{props}" scope="col" className="px-6 py-3 text-center">{props}</td>
           <hr className="mx-16"></hr>
           <ClockDetails id={props} />

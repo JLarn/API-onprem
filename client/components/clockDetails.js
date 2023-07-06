@@ -31,24 +31,26 @@ export default function ClockDetails({ id }) {
 
   // if (!detailsAreShown) return <></>;
 
-  let pippo;
+  let errore;
 
   let details = (
     <>
       <div>
         {data.map((el) => {
-          if(el.avgBpm < 40 || el.avgBpm > 250) pippo = 'text-red-600'
+          if(el.avgBpm < 40 || el.avgBpm > 250) errore = 'text-red-600'
           return (
             <> 
-              <div className={"ml-4 flex " + pippo}>
-                <b>Session id: </b>
-                {el.id}
-              </div>
-              <div className={"ml-4 flex " + pippo}>
-                <b>BPM: </b>
-                {el.avgBpm.toFixed(0)}
-              </div>
-              ------
+            <div className="border-x-2 bg-white border-slate-200 mx-20">
+              <div className={"pl-[100px] flex pt-4 " + errore}>
+                    <b>Session id: </b>
+                    {el.id}
+                </div>
+                <div className={"flex pl-[100px] " + errore}>
+                    <b>BPM: </b>
+                    {el.avgBpm.toFixed(0)}
+                </div>
+              <hr className="mx-40"></hr>
+            </div>
             </>
           );
         })}
