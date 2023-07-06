@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react';
 import { baseURL } from '../utils/urls';
 import ClockSummary from './clockSummary';
+import SingleBatch from './singleBatch';
 
-const url = baseURL + 'batches/'
+const url = baseURL + 'batches/all'
 
-export default function Clocks({n_batch}) {
+export default function Batches() {
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  const [selectedClock, setSelectedClock] = useState(null);
+  const [selectedBatch, setSelectedBatch] = useState(null);
 
-  const ViewSessionDetails = (sessionId) => {
-    setSelectedClock(sessionId)
+  const viewClocks = (batchN) => {
+    setSelectedBatch(batchN)
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     setLoading(true);
-    await fetch(url + n_batch)
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -26,15 +27,13 @@ export default function Clocks({n_batch}) {
   if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>No data</p>;
 
-  // if (!detailsAreShown) return <></>
-
-//  console.log(data, url + n_batch, 'AAAAAA')
-
-  let clocks = <>
+  let batches = <>
+    <div className='flex flex-col items-center'>
     {
-      data.map((el, key) => <ClockSummary props={el._id} />)
+      data.map((el, key) => <SingleBatch props={el} /> )
     }
+    </div>
   </>
 
-  return clocks
+  return batches
 }
