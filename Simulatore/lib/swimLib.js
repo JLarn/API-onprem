@@ -3,7 +3,7 @@ const uuid = require('uuid').v4;
 const poolLength = process.env.POOL_LENGTH ?? 200;
 const interval = process.env.INTERVAL ?? 10;
 const clock_id = process.env.CLOCK_ID
-const url = process.env.API_URL + "/" + clock_id
+const url = process.env.API_URL + "/" + clock_id + process.env.FUNCTION_CODE
 
 class Data {
     constructor() {
